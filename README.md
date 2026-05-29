@@ -24,7 +24,9 @@ Rode `.\InstalarFFmpeg.ps1` uma vez. Depois use:
 .\ConverterParaMP4.ps1 -Entrada ".\patrocinadores.webm"
 ```
 
-Ou dê duplo clique em `ConverterParaMP4.bat`, arraste o arquivo `.webm` para a janela e aperte Enter.
+Ou de duplo clique em `ConverterParaMP4.bat`, arraste o arquivo `.webm` para a janela e aperte Enter. A janela fica aberta no final para mostrar o resultado ou o erro.
+
+Tambem da para arrastar o arquivo `.webm` diretamente em cima de `ArrastarWebMParaConverter.bat`.
 
 Para escolher o nome de saida:
 
