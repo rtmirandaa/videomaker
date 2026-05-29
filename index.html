@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gerador de Video de Patrocinadores</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="workspace" aria-labelledby="page-title">
+        <div class="intro">
+          <p class="eyebrow">Projetor 16:9</p>
+          <h1 id="page-title">Gerador de video de patrocinadores</h1>
+          <p>
+            Adicione as imagens, organize a ordem e gere um video com 5 segundos
+            para cada uma.
+          </p>
+        </div>
+
+        <label class="drop-zone" id="dropZone">
+          <input id="fileInput" type="file" accept="image/*" multiple />
+          <span class="drop-icon" aria-hidden="true">+</span>
+          <strong>Selecionar imagens</strong>
+          <span>ou arraste os arquivos para ca</span>
+        </label>
+
+        <div class="controls" aria-label="Configuracoes do video">
+          <label>
+            Fundo
+            <input id="backgroundColor" type="color" value="#ffffff" />
+          </label>
+          <label>
+            Resolucao
+            <select id="resolution">
+              <option value="1920x1080">Full HD 1920 x 1080</option>
+              <option value="1280x720">HD 1280 x 720</option>
+              <option value="720x480">SD 720 x 480</option>
+              <option value="3840x2160">4K 3840 x 2160</option>
+            </select>
+          </label>
+          <label>
+            Intro
+            <select id="introMode">
+              <option value="none">Sem intro</option>
+              <option value="simple">Intro simples</option>
+              <option value="video">Intro em video</option>
+            </select>
+          </label>
+          <label class="wide-control" id="introVideoControl" hidden>
+            Video da intro
+            <input id="introVideoInput" type="file" accept="video/*" />
+          </label>
+          <label>
+            Transicao
+            <select id="transitionMode">
+              <option value="none">Sem transicao</option>
+              <option value="fade">Fade</option>
+              <option value="slide">Deslizar</option>
+              <option value="zoom">Zoom suave</option>
+            </select>
+          </label>
+          <button id="generateButton" class="primary" type="button" disabled>
+            Gerar video
+          </button>
+        </div>
+
+        <div class="progress" id="progress" hidden>
+          <div class="progress-bar">
+            <span id="progressFill"></span>
+          </div>
+          <p id="progressText">Preparando...</p>
+        </div>
+      </section>
+
+      <aside class="preview-panel" aria-label="Previa e imagens">
+        <div class="video-frame">
+          <canvas id="previewCanvas" width="1920" height="1080"></canvas>
+        </div>
+
+        <div class="result" id="result" hidden>
+          <video id="resultVideo" controls></video>
+          <a id="downloadLink" class="download" download="patrocinadores.webm">
+            Baixar video
+          </a>
+        </div>
+
+        <div class="list-header">
+          <h2>Imagens</h2>
+          <button id="clearButton" type="button" disabled>Limpar</button>
+        </div>
+        <ul id="imageList" class="image-list"></ul>
+      </aside>
+    </main>
+
+    <script src="ArrayBufferDataStream.js"></script>
+    <script src="BlobBuffer.js"></script>
+    <script src="WebMWriter.js"></script>
+    <script src="intro-image.js?v=20260528"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

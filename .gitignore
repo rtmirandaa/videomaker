@@ -1,0 +1,15 @@
+# Videos generated or used locally
+*.mp4
+*.webm
+video-atualizado.*
+
+# Local image drop folder contents
+novas-imagens/*
+!novas-imagens/.gitkeep
+
+# Portable FFmpeg download/extract
+tools/
+
+# OS noise
+Thumbs.db
+.DS_Store
