@@ -1,6 +1,5 @@
 param(
-  [Parameter(Mandatory = $true)]
-  [string]$Entrada,
+  [string]$Entrada = "",
   [string]$Saida = ""
 )
 
@@ -11,6 +10,15 @@ function Resolve-LocalPath([string]$PathValue) {
 }
 
 $ffmpeg = Resolve-LocalPath ".\tools\ffmpeg\ffmpeg.exe"
+
+if (!$Entrada) {
+  Write-Host ""
+  Write-Host "Digite o caminho do arquivo .webm que voce quer converter."
+  Write-Host "Dica: voce pode arrastar o arquivo para esta janela e apertar Enter."
+  Write-Host ""
+  $Entrada = Read-Host "Arquivo WebM"
+  $Entrada = $Entrada.Trim().Trim('"')
+}
 
 if (!(Test-Path -LiteralPath $ffmpeg)) {
   Write-Host ""
@@ -42,3 +50,5 @@ if ($LASTEXITCODE -ne 0) {
 
 Write-Host ""
 Write-Host "Pronto: $outputPath"
+Write-Host ""
+Read-Host "Pressione Enter para fechar"
