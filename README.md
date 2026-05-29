@@ -47,6 +47,8 @@ Para nao gerar tudo de novo quando chegarem novas imagens:
 .\AdicionarFotos.ps1
 ```
 
+Ou de duplo clique em `AdicionarFotos.bat`. A janela fica aberta no final para mostrar se criou `video-atualizado.mp4` ou qual erro aconteceu.
+
 O script cria `video-atualizado.mp4`, anexando as novas fotos no final. Cada imagem nova fica 5 segundos. Se o video base tiver outro nome, use:
 
 ```powershell
