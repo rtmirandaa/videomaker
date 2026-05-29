@@ -60,6 +60,13 @@
               <option value="zoom">Zoom suave</option>
             </select>
           </label>
+          <label>
+            Formato
+            <select id="outputFormat">
+              <option value="webm">WebM direto</option>
+              <option value="mp4">MP4 via conversor</option>
+            </select>
+          </label>
           <button id="generateButton" class="primary" type="button" disabled>
             Gerar video
           </button>
@@ -83,6 +90,7 @@
           <a id="downloadLink" class="download" download="patrocinadores.webm">
             Baixar video
           </a>
+          <p id="formatHelp" class="format-help" hidden></p>
         </div>
 
         <div class="list-header">

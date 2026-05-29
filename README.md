@@ -10,10 +10,25 @@ Aplicacao simples para gerar um video com imagens de patrocinadores.
 4. Escolha o fundo e a resolucao, incluindo `720 x 480` quando precisar desse formato.
 5. Escolha uma intro, se quiser: sem intro, intro simples com a foto da igreja ou intro em video.
 6. Escolha uma transicao, se quiser: sem transicao, fade, deslizar ou zoom suave.
-7. Clique em **Gerar video**.
-8. Quando terminar, clique em **Baixar video**.
+7. Escolha o formato: WebM direto ou MP4 via conversor.
+8. Clique em **Gerar video**.
+9. Quando terminar, clique em **Baixar video**.
 
-Cada imagem fica na tela por 5 segundos. Com 55 fotos e sem intro/transicao, o video fica com cerca de 4 minutos e 35 segundos. O arquivo gerado sai em `.webm`, formato aceito pelos navegadores modernos e bom para reproducao em computador/projetor. A intro em video entra sem audio, porque o gerador exporta apenas a faixa visual.
+Cada imagem fica na tela por 5 segundos. Com 55 fotos e sem intro/transicao, o video fica com cerca de 4 minutos e 35 segundos. O navegador gera `.webm` de forma direta e confiavel. Para MP4, baixe o WebM e converta com `.\ConverterParaMP4.ps1`. A intro em video entra sem audio, porque o gerador exporta apenas a faixa visual.
+
+## Converter WebM para MP4
+
+Rode `.\InstalarFFmpeg.ps1` uma vez. Depois use:
+
+```powershell
+.\ConverterParaMP4.ps1 -Entrada ".\patrocinadores.webm"
+```
+
+Para escolher o nome de saida:
+
+```powershell
+.\ConverterParaMP4.ps1 -Entrada ".\patrocinadores.webm" -Saida ".\patrocinadores.mp4"
+```
 
 ## Adicionar imagens no final de um video pronto
 

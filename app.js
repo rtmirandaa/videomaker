@@ -16,6 +16,7 @@ const introMode = document.querySelector("#introMode");
 const introVideoControl = document.querySelector("#introVideoControl");
 const introVideoInput = document.querySelector("#introVideoInput");
 const transitionMode = document.querySelector("#transitionMode");
+const outputFormat = document.querySelector("#outputFormat");
 const generateButton = document.querySelector("#generateButton");
 const clearButton = document.querySelector("#clearButton");
 const progress = document.querySelector("#progress");
@@ -24,6 +25,7 @@ const progressText = document.querySelector("#progressText");
 const result = document.querySelector("#result");
 const resultVideo = document.querySelector("#resultVideo");
 const downloadLink = document.querySelector("#downloadLink");
+const formatHelp = document.querySelector("#formatHelp");
 
 const previewContext = previewCanvas.getContext("2d");
 let slides = [];
@@ -326,9 +328,16 @@ async function generateVideo() {
     resultVideo.src = lastVideoUrl;
     resultVideo.load();
     downloadLink.href = lastVideoUrl;
-    downloadLink.download = `patrocinadores-${new Date().toISOString().slice(0, 10)}.webm`;
+    const fileName = `patrocinadores-${new Date().toISOString().slice(0, 10)}.webm`;
+    downloadLink.download = fileName;
+    downloadLink.textContent = outputFormat.value === "mp4" ? "Baixar WebM para converter em MP4" : "Baixar video WebM";
+    formatHelp.hidden = outputFormat.value !== "mp4";
+    formatHelp.textContent =
+      "Para MP4, baixe este WebM e rode no PowerShell: .\\ConverterParaMP4.ps1 -Entrada \".\\Downloads\\" +
+      fileName +
+      "\". O navegador gera WebM de forma confiavel; o MP4 e feito pelo conversor com FFmpeg.";
     result.hidden = false;
-    updateProgress(100, "Video pronto para baixar.");
+    updateProgress(100, outputFormat.value === "mp4" ? "WebM pronto para converter em MP4." : "Video pronto para baixar.");
   } catch (error) {
     console.error(error);
     const message = error instanceof Error ? error.message : String(error);
@@ -537,6 +546,7 @@ function setGenerationState(isGenerating) {
   introMode.disabled = isGenerating;
   introVideoInput.disabled = isGenerating;
   transitionMode.disabled = isGenerating;
+  outputFormat.disabled = isGenerating;
   if (isGenerating) {
     progress.hidden = false;
     updateProgress(0, "Preparando video...");
@@ -555,6 +565,8 @@ function resetResult() {
   }
 
   result.hidden = true;
+  formatHelp.hidden = true;
+  formatHelp.textContent = "";
   resultVideo.removeAttribute("src");
   resultVideo.load();
 }
