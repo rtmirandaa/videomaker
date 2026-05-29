@@ -17,6 +17,8 @@ function Wait-ToClose {
   Read-Host "Pressione Enter para fechar"
 }
 
+$Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+
 try {
   Set-Location -LiteralPath $PSScriptRoot
 
@@ -86,7 +88,7 @@ try {
     }
     $last = $images[-1].FullName.Replace("'", "'\''")
     $imageListLines.Add("file '$last'")
-    [System.IO.File]::WriteAllLines($imageList, $imageListLines, [System.Text.Encoding]::UTF8)
+    [System.IO.File]::WriteAllLines($imageList, $imageListLines, $Utf8NoBom)
 
     $scale = "scale=${width}:${height}:force_original_aspect_ratio=decrease,pad=${width}:${height}:(ow-iw)/2:(oh-ih)/2:color=${CorFundo},format=yuv420p"
 
@@ -99,7 +101,7 @@ try {
     [System.IO.File]::WriteAllLines($concatList, @(
       "file '$($videoBasePath.Replace("'", "'\''"))'",
       "file '$($segment.Replace("'", "'\''"))'"
-    ), [System.Text.Encoding]::UTF8)
+    ), $Utf8NoBom)
 
     Write-Host ""
     Write-Host "Tentando anexar sem reprocessar o video antigo..."
